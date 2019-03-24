@@ -12,6 +12,7 @@ class Place(models.Model) :
 class Restaurant(models.Model):
     name = models.CharField(max_length=128)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, null=False)
+    review = models.ManyToManyField(Review)
 
     def __str__(self) :
         return self.name
@@ -19,6 +20,7 @@ class Restaurant(models.Model):
 class Activity(models.Model):
     name = models.CharField(max_length=128)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, null=False)
+    review = models.ManyToManyField(Review)
 
     def __str__(self) :
         return self.name
@@ -29,6 +31,11 @@ class Activity(models.Model):
 class Bar(models.Model):
     name = models.CharField(max_length=128)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, null=False)
+    review = models.ManyToManyField(Review)
+
 
     def __str__(self) :
         return self.name
+
+class Review(models.Model) :
+    name = models.TextField()
